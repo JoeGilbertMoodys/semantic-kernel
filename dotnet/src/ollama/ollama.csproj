@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>ollama</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Codeblaze.SemanticKernel.Connectors.AI.Ollama" />
+    <PackageReference Include="Microsoft.SemanticKernel" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Codeblaze.SemanticKernel.Connectors.AI.Ollama" Version="1.0.7" />
+    <PackageVersion Include="Microsoft.SemanticKernel" Version="1.0.1" />
+  </ItemGroup>
+
+</Project>
