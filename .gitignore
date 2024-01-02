@@ -491,4 +491,4 @@ swa-cli.config.json
 # python devcontainer
 /python/.devcontainer/*
 
-open_ai.env
+.env
