@@ -8,6 +8,10 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 semantic-kernel = "^0.4.1.dev0"
+torch = "^2.1.2"
+transformers = "^4.36.2"
+sentence-transformers = "^2.2.2"
+expecttest = "^0.2.1"
 
 
 [build-system]

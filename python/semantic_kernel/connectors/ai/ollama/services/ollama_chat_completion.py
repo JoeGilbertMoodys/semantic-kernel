@@ -7,14 +7,17 @@ from typing import Dict, List, Optional, Union
 import aiohttp
 from pydantic import HttpUrl
 
-from semantic_kernel.connectors.ai.ai_request_settings import AIRequestSettings
+
 from semantic_kernel.connectors.ai.ai_service_client_base import AIServiceClientBase
 from semantic_kernel.connectors.ai.chat_completion_client_base import ChatCompletionClientBase
-from semantic_kernel.connectors.ai.ollama.ollama_request_settings import OllamaChatRequestSettings
-from semantic_kernel.connectors.ai.ollama.utils import AsyncSession
+
+
 from semantic_kernel.connectors.ai.text_completion_client_base import (
     TextCompletionClientBase,
 )
+
+from python.semantic_kernel.connectors.ai.ollama.ollama_request_settings import OllamaChatRequestSettings
+from python.semantic_kernel.connectors.ai.ollama.utils import AsyncSession
 
 logger: logging.Logger = logging.getLogger(__name__)
 

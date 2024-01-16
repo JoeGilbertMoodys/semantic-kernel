@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import Field
 
-from semantic_kernel.connectors.ai.ai_request_settings import AIRequestSettings
+from python.semantic_kernel.connectors.ai import AIRequestSettings
 
 
 class OllamaRequestSettings(AIRequestSettings):
@@ -17,6 +17,7 @@ class OllamaTextRequestSettings(OllamaRequestSettings):
     context: Optional[str] = None
     system: Optional[str] = None
     template: Optional[str] = None
+    messages: Optional[str] = None
     raw: bool = False
 
 
