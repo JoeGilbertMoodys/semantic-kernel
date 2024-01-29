@@ -60,7 +60,7 @@ class GooglePalmChatCompletion(ChatCompletionClientBase, TextCompletionClientBas
             logger.warning("The `log` parameter is deprecated. Please use the `logging` module instead.")
         self._message_history = message_history
 
-    async def complete_chat_async(
+    async def complete_chat(
         self,
         messages: List[Tuple[str, str]],
         settings: GooglePalmRequestSettings,
@@ -79,14 +79,14 @@ class GooglePalmChatCompletion(ChatCompletionClientBase, TextCompletionClientBas
             return "I don't know."  # PaLM returns None if it doesn't know
         return response.last
 
-    async def complete_chat_stream_async(
+    async def complete_chat_stream(
         self,
         messages: List[Tuple[str, str]],
         settings: GooglePalmRequestSettings,
     ):
         raise NotImplementedError("Google Palm API does not currently support streaming")
 
-    async def complete_async(
+    async def complete(
         self,
         prompt: str,
         settings: GooglePalmRequestSettings,
@@ -108,7 +108,7 @@ class GooglePalmChatCompletion(ChatCompletionClientBase, TextCompletionClientBas
             return "I don't know."  # PaLM returns None if it doesn't know
         return response.last
 
-    async def complete_stream_async(
+    async def complete_stream(
         self,
         prompt: str,
         settings: GooglePalmRequestSettings,
@@ -127,7 +127,7 @@ class GooglePalmChatCompletion(ChatCompletionClientBase, TextCompletionClientBas
         conversation has not been initiated yet, it is assumed that chat history
         is needed for context. All messages preceding the last message will be
         utilized for context. This also enables Google PaLM to utilize memory
-        and skills, which should be stored in the messages parameter as system
+        and plugins, which should be stored in the messages parameter as system
         messages.
 
         Arguments:

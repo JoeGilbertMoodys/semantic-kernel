@@ -9,9 +9,19 @@ from pydantic import HttpUrl
 
 
 from semantic_kernel.connectors.ai.ai_service_client_base import AIServiceClientBase
+<<<<<<< HEAD
 from semantic_kernel.connectors.ai.chat_completion_client_base import ChatCompletionClientBase
 
 
+=======
+from semantic_kernel.connectors.ai.chat_completion_client_base import (
+    ChatCompletionClientBase,
+)
+from semantic_kernel.connectors.ai.ollama.ollama_request_settings import (
+    OllamaChatRequestSettings,
+)
+from semantic_kernel.connectors.ai.ollama.utils import AsyncSession
+>>>>>>> 4317f2745e22055eee9eae811d7a4c48d557948d
 from semantic_kernel.connectors.ai.text_completion_client_base import (
     TextCompletionClientBase,
 )
@@ -37,7 +47,7 @@ class OllamaChatCompletion(TextCompletionClientBase, ChatCompletionClientBase, A
     url: HttpUrl = "http://localhost:11434/api/chat"
     session: Optional[aiohttp.ClientSession] = None
 
-    async def complete_chat_async(
+    async def complete_chat(
         self,
         messages: List[Dict[str, str]],
         request_settings: OllamaChatRequestSettings,
@@ -63,7 +73,7 @@ class OllamaChatCompletion(TextCompletionClientBase, ChatCompletionClientBase, A
                 response_object = await response.json()
                 return response_object.get("message", {"content": None}).get("content", None)
 
-    async def complete_chat_stream_async(
+    async def complete_chat_stream(
         self,
         messages: List[Dict[str, str]],
         settings: OllamaChatRequestSettings,
@@ -92,7 +102,7 @@ class OllamaChatCompletion(TextCompletionClientBase, ChatCompletionClientBase, A
                     if body.get("done"):
                         break
 
-    async def complete_async(
+    async def complete(
         self,
         prompt: str,
         request_settings: OllamaChatRequestSettings,
@@ -109,9 +119,9 @@ class OllamaChatCompletion(TextCompletionClientBase, ChatCompletionClientBase, A
             Returns:
                 Union[str, List[str]] -- A string or list of strings representing the response(s) from the LLM.
         """
-        return await self.complete_chat_async([{"role": "user", "content": prompt}], request_settings, **kwargs)
+        return await self.complete_chat([{"role": "user", "content": prompt}], request_settings, **kwargs)
 
-    async def complete_stream_async(
+    async def complete_stream(
         self,
         prompt: str,
         request_settings: OllamaChatRequestSettings,
@@ -128,7 +138,7 @@ class OllamaChatCompletion(TextCompletionClientBase, ChatCompletionClientBase, A
         Yields:
             str -- Completion result.
         """
-        response = self.complete_chat_stream_async([{"role": "user", "content": prompt}], request_settings, **kwargs)
+        response = self.complete_chat_stream([{"role": "user", "content": prompt}], request_settings, **kwargs)
         async for line in response:
             yield line
 

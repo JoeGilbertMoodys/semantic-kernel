@@ -26,7 +26,7 @@ az_source = AzureAISearchDataSources(**azure_ai_search_settings)
 az_data = AzureDataSources(type="AzureCognitiveSearch", parameters=az_source)
 extra = ExtraBody(data_sources=[az_data], input_language="fr", output_language="de")
 req_settings = AzureChatRequestSettings(extra_body=extra)
-prompt_config = sk.PromptTemplateConfig(completion=req_settings)
+prompt_config = sk.PromptTemplateConfig(execution_settings=req_settings)
 
 # For example, AI Search index may contain the following document:
 
@@ -76,10 +76,10 @@ async def chat() -> bool:
         return False
 
     # Non streaming
-    # answer = await kernel.run_async(chat_function, input_vars=context_vars)
+    # answer = await kernel.run(chat_function, input_vars=context_vars)
     # print(f"Assistant:> {answer}")
 
-    answer = kernel.run_stream_async(chat_function, input_vars=context_vars)
+    answer = kernel.run_stream(chat_function, input_vars=context_vars)
     print("Assistant:> ", end="")
     async for message in answer:
         print(message, end="")
